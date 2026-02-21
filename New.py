@@ -7,3 +7,4 @@ for ch in text:
         count += 1
 
 print("Total vowels:", count)
+print("Total vowels:", count)

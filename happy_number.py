@@ -19,3 +19,5 @@ if number == 1:
     print("Happy Number")
 else:
     print("Not a Happy Number")
+    print("Not a Happy Number")
+    

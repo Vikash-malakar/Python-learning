@@ -1,30 +1,17 @@
-# Day 1 Logical Program
+import random
 
+print("=== Number Guessing Game  ===")
 
-print("=== Student Info System  ===")
+# Random number generate (1 to 10)
+secret_number = random.randint(1, 10)
 
-# Input
-name = input("Enter your name: ")
-age = int(input("Enter your age: "))
-marks = float(input("Enter your marks: "))
+# User input
+guess = int(input("Guess a number between 1 to 10: "))
 
 # Logic
-is_adult = age >= 18
-
-if marks >= 90:
-    grade = "A+ "
-elif marks >= 75:
-    grade = "A "
-elif marks >= 60:
-    grade = "B "
-elif marks >= 40:
-    grade = "C "
+if guess == secret_number:
+    print(" Correct! You guessed it right!")
+elif guess > secret_number:
+    print(" Too High! The number was:", secret_number)
 else:
-    grade = "Fail "
-
-# Output
-print("\n=== Result ===")
-print("Name:", name)
-print("Adult:", is_adult)
-print("Marks:", marks)
-print("Grade:", grade)
+    print(" Too Low! The number was:", secret_number)

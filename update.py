@@ -1,17 +1,31 @@
-import random
+print("=== Welcome to ATM  ===")
 
-print("=== Number Guessing Game  ===")
+balance = 1000  # Initial balance
 
-# Random number generate (1 to 10)
-secret_number = random.randint(1, 10)
+print("1. Check Balance")
+print("2. Deposit")
+print("3. Withdraw")
 
-# User input
-guess = int(input("Guess a number between 1 to 10: "))
+choice = int(input("Enter your choice (1-3): "))
 
-# Logic
-if guess == secret_number:
-    print(" Correct! You guessed it right!")
-elif guess > secret_number:
-    print(" Too High! The number was:", secret_number)
+if choice == 1:
+    print(" Your Balance is:", balance)
+
+elif choice == 2:
+    amount = float(input("Enter amount to deposit: "))
+    balance += amount
+    print(" Deposited Successfully!")
+    print(" New Balance:", balance)
+
+elif choice == 3:
+    amount = float(input("Enter amount to withdraw: "))
+    
+    if amount > balance:
+        print(" Insufficient Balance!")
+    else:
+        balance -= amount
+        print(" Withdrawal Successful!")
+        print(" Remaining Balance:", balance)
+
 else:
-    print(" Too Low! The number was:", secret_number)
+    print(" Invalid Choice")

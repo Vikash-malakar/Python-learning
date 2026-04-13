@@ -1,30 +1,18 @@
-print("=== To-Do List Manager 📋 ===")
+print("=== Prime Number Checker  ===")
 
-tasks = []
+num = int(input("Enter a number: "))
 
-while True:
-    print("\n1. Add Task")
-    print("2. Show Tasks")
-    print("3. Exit")
+if num <= 1:
+    print(" Not a Prime Number")
+else:
+    is_prime = True
 
-    choice = input("Enter your choice: ")
+    for i in range(2, num):
+        if num % i == 0:
+            is_prime = False
+            break
 
-    if choice == "1":
-        task = input("Enter your task: ")
-        tasks.append(task)
-        print(" Task Added!")
-
-    elif choice == "2":
-        if len(tasks) == 0:
-            print("📭 No tasks yet!")
-        else:
-            print("\n Your Tasks:")
-            for i in range(len(tasks)):
-                print(i + 1, "-", tasks[i])
-
-    elif choice == "3":
-        print("👋 Exiting... Bye!")
-        break
-
+    if is_prime:
+        print(" It is a Prime Number")
     else:
-        print(" Invalid Choice")
+        print(" Not a Prime Number")

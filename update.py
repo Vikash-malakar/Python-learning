@@ -1,18 +1,22 @@
-print("=== Prime Number Checker  ===")
+print("=== Password Strength Checker ===")
 
-num = int(input("Enter a number: "))
+password = input("Enter your password: ")
 
-if num <= 1:
-    print(" Not a Prime Number")
+length = len(password)
+
+has_digit = False
+has_upper = False
+
+for ch in password:
+    if ch.isdigit():
+        has_digit = True
+    if ch.isupper():
+        has_upper = True
+
+# Logic
+if length >= 8 and has_digit and has_upper:
+    print(" Strong Password")
+elif length >= 6:
+    print(" Medium Password")
 else:
-    is_prime = True
-
-    for i in range(2, num):
-        if num % i == 0:
-            is_prime = False
-            break
-
-    if is_prime:
-        print(" It is a Prime Number")
-    else:
-        print(" Not a Prime Number")
+    print(" Weak Password")

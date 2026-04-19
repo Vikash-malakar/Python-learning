@@ -1,43 +1,33 @@
-print("=== ATM Machine ===")
+print("=== Quiz Game ===")
 
-pin = "1234"
-balance = 5000
+score = 0
 
-user_pin = input("Enter PIN: ")
+q1 = input("1. Python kis type ki language hai? ")
+if q1.lower() == "high level":
+    score += 1
 
-if user_pin == pin:
+q2 = input("2. 5 + 3 = ")
+if q2 == "8":
+    score += 1
 
-    while True:
-        print("\n1. Check Balance")
-        print("2. Deposit")
-        print("3. Withdraw")
-        print("4. Exit")
+q3 = input("3. HTML ka full form kya hai? ")
+if q3.lower() == "hyper text markup language":
+    score += 1
 
-        choice = input("Enter choice: ")
+q4 = input("4. India ki capital kya hai? ")
+if q4.lower() == "delhi":
+    score += 1
 
-        if choice == "1":
-            print("Current Balance:", balance)
+q5 = input("5. Python file extension kya hoti hai? ")
+if q5.lower() == ".py":
+    score += 1
 
-        elif choice == "2":
-            amount = float(input("Enter deposit amount: "))
-            balance += amount
-            print("Updated Balance:", balance)
+print("\n=== Result ===")
+print("Total Score:", score, "/ 5")
 
-        elif choice == "3":
-            amount = float(input("Enter withdraw amount: "))
-
-            if amount <= balance:
-                balance -= amount
-                print("Updated Balance:", balance)
-            else:
-                print("Insufficient Balance")
-
-        elif choice == "4":
-            print("Thank You")
-            break
-
-        else:
-            print("Invalid Choice")
-
+if score == 5:
+    print("Excellent")
+elif score >= 3:
+    print("Good")
 else:
-    print("Wrong PIN")
+    print("Need Practice")

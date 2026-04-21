@@ -1,33 +1,14 @@
-print("=== Quiz Game ===")
+import random
 
-score = 0
+print("=== Password Generator ===")
 
-q1 = input("1. Python kis type ki language hai? ")
-if q1.lower() == "high level":
-    score += 1
+chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%&*"
 
-q2 = input("2. 5 + 3 = ")
-if q2 == "8":
-    score += 1
+length = int(input("Enter password length: "))
 
-q3 = input("3. HTML ka full form kya hai? ")
-if q3.lower() == "hyper text markup language":
-    score += 1
+password = ""
 
-q4 = input("4. India ki capital kya hai? ")
-if q4.lower() == "delhi":
-    score += 1
+for i in range(length):
+    password += random.choice(chars)
 
-q5 = input("5. Python file extension kya hoti hai? ")
-if q5.lower() == ".py":
-    score += 1
-
-print("\n=== Result ===")
-print("Total Score:", score, "/ 5")
-
-if score == 5:
-    print("Excellent")
-elif score >= 3:
-    print("Good")
-else:
-    print("Need Practice")
+print("Generated Password:", password)

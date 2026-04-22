@@ -1,14 +1,40 @@
-import random
+print("=== Contact Book ===")
 
-print("=== Password Generator ===")
+contacts = {}
 
-chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%&*"
+while True:
+    print("\n1. Add Contact")
+    print("2. View Contacts")
+    print("3. Search Contact")
+    print("4. Exit")
 
-length = int(input("Enter password length: "))
+    choice = input("Enter choice: ")
 
-password = ""
+    if choice == "1":
+        name = input("Enter name: ")
+        number = input("Enter number: ")
+        contacts[name] = number
+        print("Contact Saved")
 
-for i in range(length):
-    password += random.choice(chars)
+    elif choice == "2":
+        if len(contacts) == 0:
+            print("No Contacts Found")
+        else:
+            print("\nSaved Contacts:")
+            for name, number in contacts.items():
+                print(name, ":", number)
 
-print("Generated Password:", password)
+    elif choice == "3":
+        search = input("Enter name to search: ")
+
+        if search in contacts:
+            print("Number:", contacts[search])
+        else:
+            print("Contact Not Found")
+
+    elif choice == "4":
+        print("Program Closed")
+        break
+
+    else:
+        print("Invalid Choice")

@@ -1,38 +1,41 @@
-print("=== Contact Book ===")
+print("=== Library Management System ===")
 
-contacts = {}
+books = ["Python", "Java", "C++", "Django"]
 
 while True:
-    print("\n1. Add Contact")
-    print("2. View Contacts")
-    print("3. Search Contact")
-    print("4. Exit")
+    print("\n1. View Books")
+    print("2. Issue Book")
+    print("3. Return Book")
+    print("4. Add Book")
+    print("5. Exit")
 
     choice = input("Enter choice: ")
 
     if choice == "1":
-        name = input("Enter name: ")
-        number = input("Enter number: ")
-        contacts[name] = number
-        print("Contact Saved")
+        print("\nAvailable Books:")
+        for book in books:
+            print(book)
 
     elif choice == "2":
-        if len(contacts) == 0:
-            print("No Contacts Found")
+        book_name = input("Enter book name to issue: ")
+
+        if book_name in books:
+            books.remove(book_name)
+            print("Book Issued")
         else:
-            print("\nSaved Contacts:")
-            for name, number in contacts.items():
-                print(name, ":", number)
+            print("Book Not Available")
 
     elif choice == "3":
-        search = input("Enter name to search: ")
-
-        if search in contacts:
-            print("Number:", contacts[search])
-        else:
-            print("Contact Not Found")
+        book_name = input("Enter book name to return: ")
+        books.append(book_name)
+        print("Book Returned")
 
     elif choice == "4":
+        book_name = input("Enter new book name: ")
+        books.append(book_name)
+        print("Book Added")
+
+    elif choice == "5":
         print("Program Closed")
         break
 

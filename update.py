@@ -1,41 +1,42 @@
-print("=== Library Management System ===")
+print("=== Voting System ===")
 
-books = ["Python", "Java", "C++", "Django"]
+votes = {
+    "Rahul": 0,
+    "Amit": 0,
+    "Vikash": 0
+}
 
 while True:
-    print("\n1. View Books")
-    print("2. Issue Book")
-    print("3. Return Book")
-    print("4. Add Book")
-    print("5. Exit")
+    print("\n1. Cast Vote")
+    print("2. Show Results")
+    print("3. Show Winner")
+    print("4. Exit")
 
     choice = input("Enter choice: ")
 
     if choice == "1":
-        print("\nAvailable Books:")
-        for book in books:
-            print(book)
+        print("\nCandidates:")
+        for name in votes:
+            print(name)
+
+        candidate = input("Enter candidate name: ")
+
+        if candidate in votes:
+            votes[candidate] += 1
+            print("Vote Casted Successfully")
+        else:
+            print("Invalid Candidate")
 
     elif choice == "2":
-        book_name = input("Enter book name to issue: ")
-
-        if book_name in books:
-            books.remove(book_name)
-            print("Book Issued")
-        else:
-            print("Book Not Available")
+        print("\nVoting Results:")
+        for name, count in votes.items():
+            print(name, ":", count)
 
     elif choice == "3":
-        book_name = input("Enter book name to return: ")
-        books.append(book_name)
-        print("Book Returned")
+        winner = max(votes, key=votes.get)
+        print("Winner is:", winner)
 
     elif choice == "4":
-        book_name = input("Enter new book name: ")
-        books.append(book_name)
-        print("Book Added")
-
-    elif choice == "5":
         print("Program Closed")
         break
 

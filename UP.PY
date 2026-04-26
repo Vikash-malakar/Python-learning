@@ -1,6 +1,7 @@
-print("=== Bus Ticket Booking System ===")
+print("=== Movie Ticket Booking System ===")
 
-available_seats = 20
+available_seats = 30
+ticket_price = 200
 
 while True:
     print("\n1. Book Ticket")
@@ -10,20 +11,19 @@ while True:
     choice = input("Enter choice: ")
 
     if choice == "1":
-        name = input("Enter passenger name: ")
-        destination = input("Enter destination: ")
-        seats = int(input("Enter number of seats: "))
-        fare_per_seat = 250
+        name = input("Enter customer name: ")
+        movie = input("Enter movie name: ")
+        seats = int(input("Enter number of tickets: "))
 
         if seats <= available_seats:
-            total_fare = seats * fare_per_seat
+            total = seats * ticket_price
             available_seats -= seats
 
-            print("\n=== Ticket Confirmed ===")
-            print("Passenger Name:", name)
-            print("Destination:", destination)
-            print("Seats Booked:", seats)
-            print("Total Fare:", total_fare)
+            print("\n=== Booking Confirmed ===")
+            print("Customer Name:", name)
+            print("Movie Name:", movie)
+            print("Tickets:", seats)
+            print("Total Amount:", total)
             print("Remaining Seats:", available_seats)
         else:
             print("Seats Not Available")

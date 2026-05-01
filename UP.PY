@@ -1,45 +1,42 @@
-print("=== Bank Account Manager ===")
+print("=== Notes Manager ===")
 
-balance = 0
-transactions = []
+FILE_NAME = "notes.txt"
 
 while True:
-    print("\n1. Deposit")
-    print("2. Withdraw")
-    print("3. Check Balance")
-    print("4. Mini Statement")
-    print("5. Exit")
+    print("\n1. Add Note")
+    print("2. View Notes")
+    print("3. Delete All Notes")
+    print("4. Exit")
 
     choice = input("Enter choice: ")
 
     if choice == "1":
-        amount = float(input("Enter deposit amount: "))
-        balance += amount
-        transactions.append("Deposited: " + str(amount))
-        print("Amount Deposited")
+        note = input("Enter your note: ")
+
+        with open(FILE_NAME, "a") as file:
+            file.write(note + "\n")
+
+        print("Note Saved")
 
     elif choice == "2":
-        amount = float(input("Enter withdraw amount: "))
+        try:
+            with open(FILE_NAME, "r") as file:
+                data = file.read()
 
-        if amount <= balance:
-            balance -= amount
-            transactions.append("Withdrawn: " + str(amount))
-            print("Amount Withdrawn")
-        else:
-            print("Insufficient Balance")
+                if data == "":
+                    print("No Notes Found")
+                else:
+                    print("\nYour Notes:\n")
+                    print(data)
+
+        except FileNotFoundError:
+            print("No Notes Found")
 
     elif choice == "3":
-        print("Current Balance:", balance)
+        open(FILE_NAME, "w").close()
+        print("All Notes Deleted")
 
     elif choice == "4":
-        print("\nMini Statement:")
-        if len(transactions) == 0:
-            print("No Transactions")
-        else:
-            for t in transactions:
-                print(t)
-
-    elif choice == "5":
         print("Program Closed")
         break
 

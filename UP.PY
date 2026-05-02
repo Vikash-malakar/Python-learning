@@ -1,42 +1,50 @@
-print("=== Notes Manager ===")
+print("=== Login & Signup System ===")
 
-FILE_NAME = "notes.txt"
+FILE_NAME = "users.txt"
+
+def signup():
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+
+    with open(FILE_NAME, "a") as file:
+        file.write(username + "," + password + "\n")
+
+    print("Signup Successful")
+
+def login():
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+
+    try:
+        with open(FILE_NAME, "r") as file:
+            users = file.readlines()
+
+            for user in users:
+                u, p = user.strip().split(",")
+
+                if u == username and p == password:
+                    print("Login Successful")
+                    return
+
+            print("Invalid Credentials")
+
+    except FileNotFoundError:
+        print("No users found. Please signup first.")
 
 while True:
-    print("\n1. Add Note")
-    print("2. View Notes")
-    print("3. Delete All Notes")
-    print("4. Exit")
+    print("\n1. Signup")
+    print("2. Login")
+    print("3. Exit")
 
     choice = input("Enter choice: ")
 
     if choice == "1":
-        note = input("Enter your note: ")
-
-        with open(FILE_NAME, "a") as file:
-            file.write(note + "\n")
-
-        print("Note Saved")
+        signup()
 
     elif choice == "2":
-        try:
-            with open(FILE_NAME, "r") as file:
-                data = file.read()
-
-                if data == "":
-                    print("No Notes Found")
-                else:
-                    print("\nYour Notes:\n")
-                    print(data)
-
-        except FileNotFoundError:
-            print("No Notes Found")
+        login()
 
     elif choice == "3":
-        open(FILE_NAME, "w").close()
-        print("All Notes Deleted")
-
-    elif choice == "4":
         print("Program Closed")
         break
 

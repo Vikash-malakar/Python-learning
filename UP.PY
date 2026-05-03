@@ -1,48 +1,57 @@
-print("=== Login & Signup System ===")
+import random
+import string
 
-FILE_NAME = "users.txt"
+print("=== Simple URL Shortener ===")
 
-def signup():
-    username = input("Enter username: ")
-    password = input("Enter password: ")
+FILE_NAME = "urls.txt"
+
+def generate_code(length=6):
+    chars = string.ascii_letters + string.digits
+    code = ""
+    for _ in range(length):
+        code += random.choice(chars)
+    return code
+
+def shorten_url():
+    long_url = input("Enter long URL: ")
+
+    code = generate_code()
 
     with open(FILE_NAME, "a") as file:
-        file.write(username + "," + password + "\n")
+        file.write(code + "," + long_url + "\n")
 
-    print("Signup Successful")
+    print("Short Code:", code)
 
-def login():
-    username = input("Enter username: ")
-    password = input("Enter password: ")
+def get_url():
+    code = input("Enter short code: ")
 
     try:
         with open(FILE_NAME, "r") as file:
-            users = file.readlines()
+            data = file.readlines()
 
-            for user in users:
-                u, p = user.strip().split(",")
-
-                if u == username and p == password:
-                    print("Login Successful")
+            for line in data:
+                c, url = line.strip().split(",", 1)
+                if c == code:
+                    print("Original URL:", url)
                     return
 
-            print("Invalid Credentials")
+            print("Code not found")
 
     except FileNotFoundError:
-        print("No users found. Please signup first.")
+        print("No data found")
 
 while True:
-    print("\n1. Signup")
-    print("2. Login")
+    print("\n1. Shorten URL")
+    print("2. Get Original URL")
     print("3. Exit")
 
     choice = input("Enter choice: ")
 
     if choice == "1":
-        signup()
+        shorten_url()
 
     elif choice == "2":
-        login()
+        get_url()
 
     elif choice == "3":
         print("Program Closed")

@@ -1,61 +1,26 @@
-import random
-import string
+import os
+import shutil
 
-print("=== Simple URL Shortener ===")
+print("=== File Organizer ===")
 
-FILE_NAME = "urls.txt"
+path = input("Enter folder path: ")
 
-def generate_code(length=6):
-    chars = string.ascii_letters + string.digits
-    code = ""
-    for _ in range(length):
-        code += random.choice(chars)
-    return code
+if not os.path.exists(path):
+    print("Invalid Path")
+else:
+    files = os.listdir(path)
 
-def shorten_url():
-    long_url = input("Enter long URL: ")
+    for file in files:
+        file_path = os.path.join(path, file)
 
-    code = generate_code()
+        if os.path.isfile(file_path):
+            ext = file.split(".")[-1]
 
-    with open(FILE_NAME, "a") as file:
-        file.write(code + "," + long_url + "\n")
+            folder_path = os.path.join(path, ext)
 
-    print("Short Code:", code)
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
 
-def get_url():
-    code = input("Enter short code: ")
+            shutil.move(file_path, os.path.join(folder_path, file))
 
-    try:
-        with open(FILE_NAME, "r") as file:
-            data = file.readlines()
-
-            for line in data:
-                c, url = line.strip().split(",", 1)
-                if c == code:
-                    print("Original URL:", url)
-                    return
-
-            print("Code not found")
-
-    except FileNotFoundError:
-        print("No data found")
-
-while True:
-    print("\n1. Shorten URL")
-    print("2. Get Original URL")
-    print("3. Exit")
-
-    choice = input("Enter choice: ")
-
-    if choice == "1":
-        shorten_url()
-
-    elif choice == "2":
-        get_url()
-
-    elif choice == "3":
-        print("Program Closed")
-        break
-
-    else:
-        print("Invalid Choice")
+    print("Files Organized Successfully")

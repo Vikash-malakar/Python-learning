@@ -1,8 +1,12 @@
-print("Even Odd Checker")
+print("Find Largest Number")
 
-num = int(input("Enter a number: "))
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
 
-if num % 2 == 0:
-    print("Even Number")
+if a >= b and a >= c:
+    print("Largest number is:", a)
+elif b >= a and b >= c:
+    print("Largest number is:", b)
 else:
-    print("Odd Number")
+    print("Largest number is:", c)

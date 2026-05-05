@@ -1,12 +1,10 @@
-print("Find Largest Number")
+print("Sum of First N Numbers")
 
-a = int(input("Enter first number: "))
-b = int(input("Enter second number: "))
-c = int(input("Enter third number: "))
+n = int(input("Enter a number: "))
 
-if a >= b and a >= c:
-    print("Largest number is:", a)
-elif b >= a and b >= c:
-    print("Largest number is:", b)
-else:
-    print("Largest number is:", c)
+total = 0
+
+for i in range(1, n + 1):
+    total = total + i
+
+print("Sum is:", total)

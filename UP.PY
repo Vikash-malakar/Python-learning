@@ -1,10 +1,22 @@
-print("Sum of First N Numbers")
+import random
 
-n = int(input("Enter a number: "))
+print("Number Guessing Game")
 
-total = 0
+secret_number = random.randint(1, 20)
 
-for i in range(1, n + 1):
-    total = total + i
+attempts = 0
 
-print("Sum is:", total)
+while True:
+    guess = int(input("Guess a number between 1 to 20: "))
+    attempts += 1
+
+    if guess == secret_number:
+        print("Correct Guess")
+        print("Total Attempts:", attempts)
+        break
+
+    elif guess > secret_number:
+        print("Too High")
+
+    else:
+        print("Too Low")

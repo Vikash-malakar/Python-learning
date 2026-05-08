@@ -1,22 +1,12 @@
-import random
+print("Login System")
 
-print("Number Guessing Game")
+correct_username = "admin"
+correct_password = "1234"
 
-secret_number = random.randint(1, 20)
+username = input("Enter username: ")
+password = input("Enter password: ")
 
-attempts = 0
-
-while True:
-    guess = int(input("Guess a number between 1 to 20: "))
-    attempts += 1
-
-    if guess == secret_number:
-        print("Correct Guess")
-        print("Total Attempts:", attempts)
-        break
-
-    elif guess > secret_number:
-        print("Too High")
-
-    else:
-        print("Too Low")
+if username == correct_username and password == correct_password:
+    print("Login Successful")
+else:
+    print("Invalid Username or Password")

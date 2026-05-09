@@ -1,12 +1,30 @@
-print("Login System")
+print("Simple Calculator")
 
-correct_username = "admin"
-correct_password = "1234"
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
 
-username = input("Enter username: ")
-password = input("Enter password: ")
+print("\nChoose Operation")
+print("1. Addition")
+print("2. Subtraction")
+print("3. Multiplication")
+print("4. Division")
 
-if username == correct_username and password == correct_password:
-    print("Login Successful")
+choice = input("Enter choice (1-4): ")
+
+if choice == "1":
+    print("Result:", num1 + num2)
+
+elif choice == "2":
+    print("Result:", num1 - num2)
+
+elif choice == "3":
+    print("Result:", num1 * num2)
+
+elif choice == "4":
+    if num2 != 0:
+        print("Result:", num1 / num2)
+    else:
+        print("Division by zero not allowed")
+
 else:
-    print("Invalid Username or Password")
+    print("Invalid Choice")

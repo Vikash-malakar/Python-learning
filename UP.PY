@@ -1,30 +1,30 @@
-print("Simple Calculator")
+print("Student Grade Manager")
 
-num1 = float(input("Enter first number: "))
-num2 = float(input("Enter second number: "))
+students = int(input("Enter number of students: "))
 
-print("\nChoose Operation")
-print("1. Addition")
-print("2. Subtraction")
-print("3. Multiplication")
-print("4. Division")
+for i in range(students):
+    print("\nStudent", i + 1)
 
-choice = input("Enter choice (1-4): ")
+    name = input("Enter name: ")
 
-if choice == "1":
-    print("Result:", num1 + num2)
+    marks1 = float(input("Enter marks of Subject 1: "))
+    marks2 = float(input("Enter marks of Subject 2: "))
+    marks3 = float(input("Enter marks of Subject 3: "))
 
-elif choice == "2":
-    print("Result:", num1 - num2)
+    total = marks1 + marks2 + marks3
+    average = total / 3
 
-elif choice == "3":
-    print("Result:", num1 * num2)
-
-elif choice == "4":
-    if num2 != 0:
-        print("Result:", num1 / num2)
+    if average >= 90:
+        grade = "A"
+    elif average >= 75:
+        grade = "B"
+    elif average >= 50:
+        grade = "C"
     else:
-        print("Division by zero not allowed")
+        grade = "Fail"
 
-else:
-    print("Invalid Choice")
+    print("\nResult")
+    print("Name:", name)
+    print("Total:", total)
+    print("Average:", average)
+    print("Grade:", grade)

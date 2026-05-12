@@ -1,30 +1,42 @@
-print("Student Grade Manager")
+print("Expense Tracker")
 
-students = int(input("Enter number of students: "))
+balance = float(input("Enter your total balance: "))
 
-for i in range(students):
-    print("\nStudent", i + 1)
+expenses = []
 
-    name = input("Enter name: ")
+while True:
+    print("\n1. Add Expense")
+    print("2. View Expenses")
+    print("3. Check Remaining Balance")
+    print("4. Exit")
 
-    marks1 = float(input("Enter marks of Subject 1: "))
-    marks2 = float(input("Enter marks of Subject 2: "))
-    marks3 = float(input("Enter marks of Subject 3: "))
+    choice = input("Enter choice: ")
 
-    total = marks1 + marks2 + marks3
-    average = total / 3
+    if choice == "1":
+        expense = float(input("Enter expense amount: "))
+        expenses.append(expense)
+        print("Expense Added")
 
-    if average >= 90:
-        grade = "A"
-    elif average >= 75:
-        grade = "B"
-    elif average >= 50:
-        grade = "C"
+    elif choice == "2":
+        print("\nExpenses List")
+
+        total = 0
+
+        for e in expenses:
+            print(e)
+            total += e
+
+        print("Total Expense:", total)
+
+    elif choice == "3":
+        total = sum(expenses)
+        remaining = balance - total
+
+        print("Remaining Balance:", remaining)
+
+    elif choice == "4":
+        print("Program Closed")
+        break
+
     else:
-        grade = "Fail"
-
-    print("\nResult")
-    print("Name:", name)
-    print("Total:", total)
-    print("Average:", average)
-    print("Grade:", grade)
+        print("Invalid Choice")

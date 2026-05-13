@@ -1,40 +1,51 @@
-print("Expense Tracker")
+print("Contact Book")
 
-balance = float(input("Enter your total balance: "))
-
-expenses = []
+contacts = {}
 
 while True:
-    print("\n1. Add Expense")
-    print("2. View Expenses")
-    print("3. Check Remaining Balance")
-    print("4. Exit")
+    print("\n1. Add Contact")
+    print("2. View Contacts")
+    print("3. Search Contact")
+    print("4. Delete Contact")
+    print("5. Exit")
 
     choice = input("Enter choice: ")
 
     if choice == "1":
-        expense = float(input("Enter expense amount: "))
-        expenses.append(expense)
-        print("Expense Added")
+        name = input("Enter name: ")
+        number = input("Enter number: ")
+
+        contacts[name] = number
+
+        print("Contact Saved")
 
     elif choice == "2":
-        print("\nExpenses List")
+        print("\nSaved Contacts")
 
-        total = 0
-
-        for e in expenses:
-            print(e)
-            total += e
-
-        print("Total Expense:", total)
+        if len(contacts) == 0:
+            print("No Contacts Found")
+        else:
+            for name, number in contacts.items():
+                print(name, ":", number)
 
     elif choice == "3":
-        total = sum(expenses)
-        remaining = balance - total
+        search = input("Enter name to search: ")
 
-        print("Remaining Balance:", remaining)
+        if search in contacts:
+            print("Number:", contacts[search])
+        else:
+            print("Contact Not Found")
 
     elif choice == "4":
+        delete_name = input("Enter name to delete: ")
+
+        if delete_name in contacts:
+            del contacts[delete_name]
+            print("Contact Deleted")
+        else:
+            print("Contact Not Found")
+
+    elif choice == "5":
         print("Program Closed")
         break
 

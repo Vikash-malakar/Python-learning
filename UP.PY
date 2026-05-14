@@ -1,53 +1,28 @@
-print("Contact Book")
+print("Quiz Game")
 
-contacts = {}
+score = 0
 
-while True:
-    print("\n1. Add Contact")
-    print("2. View Contacts")
-    print("3. Search Contact")
-    print("4. Delete Contact")
-    print("5. Exit")
+questions = [
+    ["Python kis type ki language hai?", "high level"],
+    ["5 + 7 = ?", "12"],
+    ["India ki capital kya hai?", "delhi"],
+    ["HTML ka full form kya hai?", "hyper text markup language"]
+]
 
-    choice = input("Enter choice: ")
+for q in questions:
+    answer = input(q[0] + " ")
 
-    if choice == "1":
-        name = input("Enter name: ")
-        number = input("Enter number: ")
-
-        contacts[name] = number
-
-        print("Contact Saved")
-
-    elif choice == "2":
-        print("\nSaved Contacts")
-
-        if len(contacts) == 0:
-            print("No Contacts Found")
-        else:
-            for name, number in contacts.items():
-                print(name, ":", number)
-
-    elif choice == "3":
-        search = input("Enter name to search: ")
-
-        if search in contacts:
-            print("Number:", contacts[search])
-        else:
-            print("Contact Not Found")
-
-    elif choice == "4":
-        delete_name = input("Enter name to delete: ")
-
-        if delete_name in contacts:
-            del contacts[delete_name]
-            print("Contact Deleted")
-        else:
-            print("Contact Not Found")
-
-    elif choice == "5":
-        print("Program Closed")
-        break
-
+    if answer.lower() == q[1]:
+        print("Correct Answer")
+        score += 1
     else:
-        print("Invalid Choice")
+        print("Wrong Answer")
+
+print("\nFinal Score:", score, "/", len(questions))
+
+if score == len(questions):
+    print("Excellent")
+elif score >= 2:
+    print("Good")
+else:
+    print("Need More Practice")

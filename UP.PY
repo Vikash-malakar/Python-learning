@@ -1,28 +1,48 @@
-print("Quiz Game")
+print("To Do List")
 
-score = 0
+tasks = []
 
-questions = [
-    ["Python kis type ki language hai?", "high level"],
-    ["5 + 7 = ?", "12"],
-    ["India ki capital kya hai?", "delhi"],
-    ["HTML ka full form kya hai?", "hyper text markup language"]
-]
+while True:
+    print("\n1. Add Task")
+    print("2. View Tasks")
+    print("3. Delete Task")
+    print("4. Exit")
 
-for q in questions:
-    answer = input(q[0] + " ")
+    choice = input("Enter choice: ")
 
-    if answer.lower() == q[1]:
-        print("Correct Answer")
-        score += 1
+    if choice == "1":
+        task = input("Enter task: ")
+        tasks.append(task)
+        print("Task Added")
+
+    elif choice == "2":
+        print("\nYour Tasks")
+
+        if len(tasks) == 0:
+            print("No Tasks Found")
+        else:
+            for i in range(len(tasks)):
+                print(i + 1, ".", tasks[i])
+
+    elif choice == "3":
+        if len(tasks) == 0:
+            print("No Tasks To Delete")
+
+        else:
+            for i in range(len(tasks)):
+                print(i + 1, ".", tasks[i])
+
+            delete_task = int(input("Enter task number to delete: "))
+
+            if delete_task > 0 and delete_task <= len(tasks):
+                removed = tasks.pop(delete_task - 1)
+                print("Deleted Task:", removed)
+            else:
+                print("Invalid Task Number")
+
+    elif choice == "4":
+        print("Program Closed")
+        break
+
     else:
-        print("Wrong Answer")
-
-print("\nFinal Score:", score, "/", len(questions))
-
-if score == len(questions):
-    print("Excellent")
-elif score >= 2:
-    print("Good")
-else:
-    print("Need More Practice")
+        print("Invalid Choice")

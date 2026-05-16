@@ -1,48 +1,19 @@
-print("To Do List")
+print("Word Counter")
 
-tasks = []
+text = input("Enter a sentence: ")
 
-while True:
-    print("\n1. Add Task")
-    print("2. View Tasks")
-    print("3. Delete Task")
-    print("4. Exit")
+words = text.split()
 
-    choice = input("Enter choice: ")
+word_count = len(words)
+char_count = len(text)
 
-    if choice == "1":
-        task = input("Enter task: ")
-        tasks.append(task)
-        print("Task Added")
+vowel_count = 0
 
-    elif choice == "2":
-        print("\nYour Tasks")
+for ch in text.lower():
+    if ch in "aeiou":
+        vowel_count += 1
 
-        if len(tasks) == 0:
-            print("No Tasks Found")
-        else:
-            for i in range(len(tasks)):
-                print(i + 1, ".", tasks[i])
-
-    elif choice == "3":
-        if len(tasks) == 0:
-            print("No Tasks To Delete")
-
-        else:
-            for i in range(len(tasks)):
-                print(i + 1, ".", tasks[i])
-
-            delete_task = int(input("Enter task number to delete: "))
-
-            if delete_task > 0 and delete_task <= len(tasks):
-                removed = tasks.pop(delete_task - 1)
-                print("Deleted Task:", removed)
-            else:
-                print("Invalid Task Number")
-
-    elif choice == "4":
-        print("Program Closed")
-        break
-
-    else:
-        print("Invalid Choice")
+print("\nResult")
+print("Total Words:", word_count)
+print("Total Characters:", char_count)
+print("Total Vowels:", vowel_count)

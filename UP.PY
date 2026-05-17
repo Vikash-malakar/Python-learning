@@ -1,19 +1,10 @@
-print("Word Counter")
+print("Palindrome Checker")
 
-text = input("Enter a sentence: ")
+text = input("Enter a word or number: ")
 
-words = text.split()
+reverse_text = text[::-1]
 
-word_count = len(words)
-char_count = len(text)
-
-vowel_count = 0
-
-for ch in text.lower():
-    if ch in "aeiou":
-        vowel_count += 1
-
-print("\nResult")
-print("Total Words:", word_count)
-print("Total Characters:", char_count)
-print("Total Vowels:", vowel_count)
+if text == reverse_text:
+    print("Palindrome")
+else:
+    print("Not Palindrome")

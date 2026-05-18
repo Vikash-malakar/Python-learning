@@ -1,27 +1,26 @@
-import random
+print("Password Strength Checker")
 
-print("Rock Paper Scissors Game")
+password = input("Enter password: ")
 
-choices = ["rock", "paper", "scissors"]
+has_upper = False
+has_lower = False
+has_digit = False
 
-computer = random.choice(choices)
+for ch in password:
+    if ch.isupper():
+        has_upper = True
 
-user = input("Enter rock, paper, or scissors: ").lower()
+    elif ch.islower():
+        has_lower = True
 
-print("Computer Chose:", computer)
+    elif ch.isdigit():
+        has_digit = True
 
-if user == computer:
-    print("Match Draw")
+if len(password) >= 8 and has_upper and has_lower and has_digit:
+    print("Strong Password")
 
-elif (
-    (user == "rock" and computer == "scissors") or
-    (user == "paper" and computer == "rock") or
-    (user == "scissors" and computer == "paper")
-):
-    print("You Win")
-
-elif user in choices:
-    print("Computer Wins")
+elif len(password) >= 6:
+    print("Medium Password")
 
 else:
-    print("Invalid Input")
+    print("Weak Password")

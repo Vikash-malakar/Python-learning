@@ -1,10 +1,27 @@
-print("Palindrome Checker")
+import random
 
-text = input("Enter a word or number: ")
+print("Rock Paper Scissors Game")
 
-reverse_text = text[::-1]
+choices = ["rock", "paper", "scissors"]
 
-if text == reverse_text:
-    print("Palindrome")
+computer = random.choice(choices)
+
+user = input("Enter rock, paper, or scissors: ").lower()
+
+print("Computer Chose:", computer)
+
+if user == computer:
+    print("Match Draw")
+
+elif (
+    (user == "rock" and computer == "scissors") or
+    (user == "paper" and computer == "rock") or
+    (user == "scissors" and computer == "paper")
+):
+    print("You Win")
+
+elif user in choices:
+    print("Computer Wins")
+
 else:
-    print("Not Palindrome")
+    print("Invalid Input")

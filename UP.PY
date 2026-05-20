@@ -1,26 +1,16 @@
-print("Password Strength Checker")
+print("Number Frequency Counter")
 
-password = input("Enter password: ")
+numbers = input("Enter numbers separated by space: ").split()
 
-has_upper = False
-has_lower = False
-has_digit = False
+frequency = {}
 
-for ch in password:
-    if ch.isupper():
-        has_upper = True
+for num in numbers:
+    if num in frequency:
+        frequency[num] += 1
+    else:
+        frequency[num] = 1
 
-    elif ch.islower():
-        has_lower = True
+print("\nFrequency Result")
 
-    elif ch.isdigit():
-        has_digit = True
-
-if len(password) >= 8 and has_upper and has_lower and has_digit:
-    print("Strong Password")
-
-elif len(password) >= 6:
-    print("Medium Password")
-
-else:
-    print("Weak Password")
+for num, count in frequency.items():
+    print(num, "appears", count, "times")

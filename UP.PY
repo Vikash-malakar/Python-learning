@@ -1,16 +1,35 @@
-print("Number Frequency Counter")
+print("Simple Banking System")
 
-numbers = input("Enter numbers separated by space: ").split()
+balance = 1000
 
-frequency = {}
+while True:
+    print("\n1. Check Balance")
+    print("2. Deposit Money")
+    print("3. Withdraw Money")
+    print("4. Exit")
 
-for num in numbers:
-    if num in frequency:
-        frequency[num] += 1
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        print("Current Balance:", balance)
+
+    elif choice == "2":
+        amount = float(input("Enter deposit amount: "))
+        balance += amount
+        print("Money Deposited Successfully")
+
+    elif choice == "3":
+        amount = float(input("Enter withdraw amount: "))
+
+        if amount <= balance:
+            balance -= amount
+            print("Money Withdrawn Successfully")
+        else:
+            print("Insufficient Balance")
+
+    elif choice == "4":
+        print("Program Closed")
+        break
+
     else:
-        frequency[num] = 1
-
-print("\nFrequency Result")
-
-for num, count in frequency.items():
-    print(num, "appears", count, "times")
+        print("Invalid Choice")

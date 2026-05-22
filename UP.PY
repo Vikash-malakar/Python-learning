@@ -1,33 +1,33 @@
-print("Simple Banking System")
+print("Student Attendance System")
 
-balance = 1000
+attendance = {}
 
 while True:
-    print("\n1. Check Balance")
-    print("2. Deposit Money")
-    print("3. Withdraw Money")
-    print("4. Exit")
+    print("\n1. Mark Attendance")
+    print("2. View Attendance")
+    print("3. Exit")
 
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        print("Current Balance:", balance)
+        name = input("Enter student name: ")
+        status = input("Present or Absent: ")
+
+        attendance[name] = status
+
+        print("Attendance Marked")
 
     elif choice == "2":
-        amount = float(input("Enter deposit amount: "))
-        balance += amount
-        print("Money Deposited Successfully")
+        print("\nAttendance Record")
+
+        if len(attendance) == 0:
+            print("No Record Found")
+
+        else:
+            for name, status in attendance.items():
+                print(name, ":", status)
 
     elif choice == "3":
-        amount = float(input("Enter withdraw amount: "))
-
-        if amount <= balance:
-            balance -= amount
-            print("Money Withdrawn Successfully")
-        else:
-            print("Insufficient Balance")
-
-    elif choice == "4":
         print("Program Closed")
         break
 

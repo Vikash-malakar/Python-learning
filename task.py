@@ -11,3 +11,4 @@ for ch in text:
 
 for ch, count in frequency.items():
     print(ch, ":", count)
+    print("Final")

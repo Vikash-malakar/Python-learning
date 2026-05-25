@@ -1,58 +1,52 @@
-print("Library Book Manager")
+print("Employee Record System")
 
-books = ["Python", "Java", "C++"]
-
-issued_books = []
+employees = {}
 
 while True:
-    print("\n1. View Books")
-    print("2. Add Book")
-    print("3. Issue Book")
-    print("4. View Issued Books")
-    print("5. Exit")
+    print("\n1. Add Employee")
+    print("2. View Employees")
+    print("3. Search Employee")
+    print("4. Exit")
 
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        print("\nAvailable Books")
+        emp_id = input("Enter Employee ID: ")
+        name = input("Enter Employee Name: ")
+        salary = input("Enter Salary: ")
 
-        if len(books) == 0:
-            print("No Books Available")
+        employees[emp_id] = {
+            "name": name,
+            "salary": salary
+        }
 
-        else:
-            for book in books:
-                print(book)
+        print("Employee Added Successfully")
 
     elif choice == "2":
-        new_book = input("Enter new book name: ")
+        print("\nEmployee Records")
 
-        books.append(new_book)
+        if len(employees) == 0:
+            print("No Records Found")
 
-        print("Book Added Successfully")
+        else:
+            for emp_id, details in employees.items():
+                print("ID:", emp_id)
+                print("Name:", details["name"])
+                print("Salary:", details["salary"])
+                print()
 
     elif choice == "3":
-        issue_book = input("Enter book name to issue: ")
+        search_id = input("Enter Employee ID: ")
 
-        if issue_book in books:
-            books.remove(issue_book)
-            issued_books.append(issue_book)
-
-            print("Book Issued Successfully")
+        if search_id in employees:
+            print("\nEmployee Found")
+            print("Name:", employees[search_id]["name"])
+            print("Salary:", employees[search_id]["salary"])
 
         else:
-            print("Book Not Available")
+            print("Employee Not Found")
 
     elif choice == "4":
-        print("\nIssued Books")
-
-        if len(issued_books) == 0:
-            print("No Books Issued")
-
-        else:
-            for book in issued_books:
-                print(book)
-
-    elif choice == "5":
         print("Program Closed")
         break
 

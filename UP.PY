@@ -1,50 +1,46 @@
-print("Employee Record System")
+print("Bus Reservation System")
 
-employees = {}
+total_seats = 10
+bookings = {}
 
 while True:
-    print("\n1. Add Employee")
-    print("2. View Employees")
-    print("3. Search Employee")
+    print("\n1. Book Seat")
+    print("2. View Bookings")
+    print("3. Check Available Seats")
     print("4. Exit")
 
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        emp_id = input("Enter Employee ID: ")
-        name = input("Enter Employee Name: ")
-        salary = input("Enter Salary: ")
 
-        employees[emp_id] = {
-            "name": name,
-            "salary": salary
-        }
+        if total_seats == 0:
+            print("No Seats Available")
 
-        print("Employee Added Successfully")
+        else:
+            name = input("Enter passenger name: ")
+            seat_number = input("Enter seat number: ")
+
+            if seat_number in bookings:
+                print("Seat Already Booked")
+
+            else:
+                bookings[seat_number] = name
+                total_seats -= 1
+
+                print("Seat Booked Successfully")
 
     elif choice == "2":
-        print("\nEmployee Records")
+        print("\nBooking Details")
 
-        if len(employees) == 0:
-            print("No Records Found")
+        if len(bookings) == 0:
+            print("No Bookings Found")
 
         else:
-            for emp_id, details in employees.items():
-                print("ID:", emp_id)
-                print("Name:", details["name"])
-                print("Salary:", details["salary"])
-                print()
+            for seat, name in bookings.items():
+                print("Seat:", seat, "| Passenger:", name)
 
     elif choice == "3":
-        search_id = input("Enter Employee ID: ")
-
-        if search_id in employees:
-            print("\nEmployee Found")
-            print("Name:", employees[search_id]["name"])
-            print("Salary:", employees[search_id]["salary"])
-
-        else:
-            print("Employee Not Found")
+        print("Available Seats:", total_seats)
 
     elif choice == "4":
         print("Program Closed")

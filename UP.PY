@@ -1,46 +1,65 @@
-print("Bus Reservation System")
+print("Online Food Order System")
 
-total_seats = 10
-bookings = {}
+menu = {
+    "Burger": 120,
+    "Pizza": 250,
+    "Pasta": 180,
+    "Cold Drink": 60
+}
+
+cart = []
+total = 0
 
 while True:
-    print("\n1. Book Seat")
-    print("2. View Bookings")
-    print("3. Check Available Seats")
+    print("\nMenu")
+
+    for item, price in menu.items():
+        print(item, "-", price)
+
+    print("\n1. Order Food")
+    print("2. View Cart")
+    print("3. Checkout")
     print("4. Exit")
 
     choice = input("Enter your choice: ")
 
     if choice == "1":
+        food = input("Enter food name: ")
 
-        if total_seats == 0:
-            print("No Seats Available")
+        if food in menu:
+            cart.append(food)
+            total += menu[food]
+
+            print(food, "Added To Cart")
 
         else:
-            name = input("Enter passenger name: ")
-            seat_number = input("Enter seat number: ")
-
-            if seat_number in bookings:
-                print("Seat Already Booked")
-
-            else:
-                bookings[seat_number] = name
-                total_seats -= 1
-
-                print("Seat Booked Successfully")
+            print("Food Item Not Available")
 
     elif choice == "2":
-        print("\nBooking Details")
+        print("\nYour Cart")
 
-        if len(bookings) == 0:
-            print("No Bookings Found")
+        if len(cart) == 0:
+            print("Cart Is Empty")
 
         else:
-            for seat, name in bookings.items():
-                print("Seat:", seat, "| Passenger:", name)
+            for item in cart:
+                print(item)
+
+            print("Current Total:", total)
 
     elif choice == "3":
-        print("Available Seats:", total_seats)
+        print("\nCheckout")
+
+        if len(cart) == 0:
+            print("Cart Is Empty")
+
+        else:
+            print("Ordered Items:")
+
+            for item in cart:
+                print(item)
+
+            print("Final Bill:", total)
 
     elif choice == "4":
         print("Program Closed")

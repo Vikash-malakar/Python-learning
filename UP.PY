@@ -1,20 +1,53 @@
-print("Simple Chat Bot")
+print("Inventory Management System")
+
+inventory = {}
 
 while True:
-    message = input("\nYou: ").lower()
+    print("\n1. Add Product")
+    print("2. View Products")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Exit")
 
-    if message == "hello":
-        print("Bot: Hi")
+    choice = input("Enter your choice: ")
 
-    elif message == "how are you":
-        print("Bot: I am fine")
+    if choice == "1":
+        product = input("Enter product name: ")
+        quantity = int(input("Enter quantity: "))
 
-    elif message == "your name":
-        print("Bot: My name is Python Bot")
+        inventory[product] = quantity
+        print("Product Added Successfully")
 
-    elif message == "bye":
-        print("Bot: Goodbye")
+    elif choice == "2":
+        print("\nAvailable Products")
+
+        if len(inventory) == 0:
+            print("No Products Found")
+        else:
+            for product, quantity in inventory.items():
+                print(product, ":", quantity)
+
+    elif choice == "3":
+        product = input("Enter product name: ")
+
+        if product in inventory:
+            quantity = int(input("Enter new quantity: "))
+            inventory[product] = quantity
+            print("Stock Updated")
+        else:
+            print("Product Not Found")
+
+    elif choice == "4":
+        product = input("Enter product name: ")
+
+        if product in inventory:
+            print("Stock:", inventory[product])
+        else:
+            print("Product Not Found")
+
+    elif choice == "5":
+        print("Program Closed")
         break
 
     else:
-        print("Bot: I do not understand")
+        print("Invalid Choice")

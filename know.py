@@ -8,3 +8,4 @@ result = " ".join(reversed_words)
 
 print("Reversed Sentence:", result)
 print("-------------logout---------------")
+print("------------logout--------------")

@@ -1,11 +1,29 @@
-print("Expense Splitter")
+print("Number Analysis Tool")
 
-total_expense = float(input("Enter total expense: "))
-people = int(input("Enter number of people: "))
+numbers = input("Enter numbers separated by space: ").split()
 
-share = total_expense / people
+numbers = [int(num) for num in numbers]
 
-print("\nExpense Details")
-print("Total Expense:", total_expense)
-print("Number of People:", people)
-print("Each Person Pays:", round(share, 2))
+total = sum(numbers)
+average = total / len(numbers)
+
+largest = max(numbers)
+smallest = min(numbers)
+
+even_count = 0
+odd_count = 0
+
+for num in numbers:
+    if num % 2 == 0:
+        even_count += 1
+    else:
+        odd_count += 1
+
+print("\nAnalysis Result")
+print("Numbers:", numbers)
+print("Total:", total)
+print("Average:", average)
+print("Largest:", largest)
+print("Smallest:", smallest)
+print("Even Numbers:", even_count)
+print("Odd Numbers:", odd_count)

@@ -1,54 +1,48 @@
-expenses = []
+balance = 5000
+
+def check_balance():
+    print("Current Balance:", balance)
+
+def deposit():
+    global balance
+
+    amount = float(input("Enter Deposit Amount: "))
+    balance += amount
+
+    print("Amount Deposited Successfully")
+
+def withdraw():
+    global balance
+
+    amount = float(input("Enter Withdraw Amount: "))
+
+    if amount <= balance:
+        balance -= amount
+        print("Amount Withdrawn Successfully")
+    else:
+        print("Insufficient Balance")
 
 while True:
-    print("\n===== Expense Tracker =====")
-    print("1. Add Expense")
-    print("2. View Expenses")
-    print("3. Total Expense")
+
+    print("\n===== ATM MACHINE =====")
+    print("1. Check Balance")
+    print("2. Deposit")
+    print("3. Withdraw")
     print("4. Exit")
 
-    choice = input("Enter choice: ")
+    choice = input("Enter Choice: ")
 
     if choice == "1":
-        category = input("Enter Category: ")
-        amount = float(input("Enter Amount: "))
-
-        expense = {
-            "category": category,
-            "amount": amount
-        }
-
-        expenses.append(expense)
-
-        print("Expense Added Successfully")
+        check_balance()
 
     elif choice == "2":
-
-        if len(expenses) == 0:
-            print("No Expenses Found")
-
-        else:
-            print("\nExpense List")
-
-            for exp in expenses:
-                print(
-                    "Category:",
-                    exp["category"],
-                    "| Amount:",
-                    exp["amount"]
-                )
+        deposit()
 
     elif choice == "3":
-
-        total = 0
-
-        for exp in expenses:
-            total += exp["amount"]
-
-        print("Total Expense =", total)
+        withdraw()
 
     elif choice == "4":
-        print("Program Closed")
+        print("Thank You")
         break
 
     else:

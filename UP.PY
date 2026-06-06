@@ -1,48 +1,70 @@
-balance = 5000
+employees = {}
 
-def check_balance():
-    print("Current Balance:", balance)
+def add_employee():
+    emp_id = input("Enter Employee ID: ")
+    name = input("Enter Employee Name: ")
+    salary = float(input("Enter Salary: "))
 
-def deposit():
-    global balance
+    employees[emp_id] = {
+        "name": name,
+        "salary": salary
+    }
 
-    amount = float(input("Enter Deposit Amount: "))
-    balance += amount
+    print("Employee Added Successfully")
 
-    print("Amount Deposited Successfully")
 
-def withdraw():
-    global balance
+def view_employees():
+    if len(employees) == 0:
+        print("No Employees Found")
 
-    amount = float(input("Enter Withdraw Amount: "))
-
-    if amount <= balance:
-        balance -= amount
-        print("Amount Withdrawn Successfully")
     else:
-        print("Insufficient Balance")
+        print("\nEmployee Records")
+
+        for emp_id, data in employees.items():
+            print(
+                "ID:", emp_id,
+                "| Name:", data["name"],
+                "| Salary:", data["salary"]
+            )
+
+
+def calculate_bonus():
+    emp_id = input("Enter Employee ID: ")
+
+    if emp_id in employees:
+        salary = employees[emp_id]["salary"]
+
+        bonus = salary * 0.10
+
+        print("Employee:", employees[emp_id]["name"])
+        print("Salary:", salary)
+        print("Bonus:", bonus)
+
+    else:
+        print("Employee Not Found")
+
 
 while True:
 
-    print("\n===== ATM MACHINE =====")
-    print("1. Check Balance")
-    print("2. Deposit")
-    print("3. Withdraw")
+    print("\n===== Employee Salary Manager =====")
+    print("1. Add Employee")
+    print("2. View Employees")
+    print("3. Calculate Bonus")
     print("4. Exit")
 
     choice = input("Enter Choice: ")
 
     if choice == "1":
-        check_balance()
+        add_employee()
 
     elif choice == "2":
-        deposit()
+        view_employees()
 
     elif choice == "3":
-        withdraw()
+        calculate_bonus()
 
     elif choice == "4":
-        print("Thank You")
+        print("Program Closed")
         break
 
     else:

@@ -1,70 +1,66 @@
-employees = {}
+products = {
+    "Laptop": 50000,
+    "Mouse": 500,
+    "Keyboard": 1500,
+    "Headphone": 2000
+}
 
-def add_employee():
-    emp_id = input("Enter Employee ID: ")
-    name = input("Enter Employee Name: ")
-    salary = float(input("Enter Salary: "))
+cart = []
 
-    employees[emp_id] = {
-        "name": name,
-        "salary": salary
-    }
+def show_products():
+    print("\nAvailable Products")
 
-    print("Employee Added Successfully")
+    for product, price in products.items():
+        print(product, "-", price)
 
 
-def view_employees():
-    if len(employees) == 0:
-        print("No Employees Found")
+def add_to_cart():
+    product = input("Enter Product Name: ")
+
+    if product in products:
+        cart.append(product)
+        print("Product Added To Cart")
+    else:
+        print("Product Not Found")
+
+
+def view_cart():
+    if len(cart) == 0:
+        print("Cart Is Empty")
 
     else:
-        print("\nEmployee Records")
+        total = 0
 
-        for emp_id, data in employees.items():
-            print(
-                "ID:", emp_id,
-                "| Name:", data["name"],
-                "| Salary:", data["salary"]
-            )
+        print("\nCart Items")
 
+        for item in cart:
+            print(item, "-", products[item])
+            total += products[item]
 
-def calculate_bonus():
-    emp_id = input("Enter Employee ID: ")
-
-    if emp_id in employees:
-        salary = employees[emp_id]["salary"]
-
-        bonus = salary * 0.10
-
-        print("Employee:", employees[emp_id]["name"])
-        print("Salary:", salary)
-        print("Bonus:", bonus)
-
-    else:
-        print("Employee Not Found")
+        print("Total Bill:", total)
 
 
 while True:
 
-    print("\n===== Employee Salary Manager =====")
-    print("1. Add Employee")
-    print("2. View Employees")
-    print("3. Calculate Bonus")
+    print("\n===== MINI E-COMMERCE =====")
+    print("1. Show Products")
+    print("2. Add To Cart")
+    print("3. View Cart")
     print("4. Exit")
 
     choice = input("Enter Choice: ")
 
     if choice == "1":
-        add_employee()
+        show_products()
 
     elif choice == "2":
-        view_employees()
+        add_to_cart()
 
     elif choice == "3":
-        calculate_bonus()
+        view_cart()
 
     elif choice == "4":
-        print("Program Closed")
+        print("Thank You For Visiting")
         break
 
     else:

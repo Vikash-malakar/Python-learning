@@ -1,84 +1,65 @@
-patients = {}
+seats = [
+    ["A1", "A2", "A3"],
+    ["B1", "B2", "B3"],
+    ["C1", "C2", "C3"]
+]
 
-def add_patient():
-    patient_id = input("Enter Patient ID: ")
-    name = input("Enter Patient Name: ")
-    age = input("Enter Age: ")
-    disease = input("Enter Disease: ")
+booked_seats = []
 
-    patients[patient_id] = {
-        "name": name,
-        "age": age,
-        "disease": disease
-    }
-
-    print("Patient Added Successfully")
+TICKET_PRICE = 200
 
 
-def view_patients():
-    if not patients:
-        print("No Patients Found")
-        return
+def show_seats():
+    print("\nAvailable Seats")
 
-    print("\nPatient Records")
-
-    for patient_id, data in patients.items():
-        print(
-            "ID:", patient_id,
-            "| Name:", data["name"],
-            "| Age:", data["age"],
-            "| Disease:", data["disease"]
-        )
+    for row in seats:
+        for seat in row:
+            if seat in booked_seats:
+                print("XX", end=" ")
+            else:
+                print(seat, end=" ")
+        print()
 
 
-def search_patient():
-    patient_id = input("Enter Patient ID: ")
+def book_ticket():
+    seat = input("Enter Seat Number: ").upper()
 
-    if patient_id in patients:
-        data = patients[patient_id]
+    all_seats = []
 
-        print("\nPatient Found")
-        print("Name:", data["name"])
-        print("Age:", data["age"])
-        print("Disease:", data["disease"])
+    for row in seats:
+        all_seats.extend(row)
+
+    if seat not in all_seats:
+        print("Invalid Seat Number")
+
+    elif seat in booked_seats:
+        print("Seat Already Booked")
+
     else:
-        print("Patient Not Found")
+        booked_seats.append(seat)
 
-
-def delete_patient():
-    patient_id = input("Enter Patient ID: ")
-
-    if patient_id in patients:
-        del patients[patient_id]
-        print("Patient Deleted")
-    else:
-        print("Patient Not Found")
+        print("Booking Successful")
+        print("Seat:", seat)
+        print("Amount:", TICKET_PRICE)
 
 
 while True:
-    print("\n===== HOSPITAL MANAGEMENT SYSTEM =====")
-    print("1. Add Patient")
-    print("2. View Patients")
-    print("3. Search Patient")
-    print("4. Delete Patient")
-    print("5. Exit")
+
+    print("\n===== MOVIE BOOKING SYSTEM =====")
+    print("1. Show Seats")
+    print("2. Book Ticket")
+    print("3. Exit")
 
     choice = input("Enter Choice: ")
 
     if choice == "1":
-        add_patient()
+        show_seats()
 
     elif choice == "2":
-        view_patients()
+        book_ticket()
 
     elif choice == "3":
-        search_patient()
-
-    elif choice == "4":
-        delete_patient()
-
-    elif choice == "5":
-        print("Program Closed")
+        print("Thank You")
         break
 
     else:

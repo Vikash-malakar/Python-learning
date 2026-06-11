@@ -1,84 +1,81 @@
-FILE_NAME = "passwords.txt"
+products = {
+    "Laptop": 50000,
+    "Mouse": 500,
+    "Keyboard": 1500,
+    "Monitor": 12000
+}
 
-def add_password():
-    website = input("Enter Website: ")
-    username = input("Enter Username: ")
-    password = input("Enter Password: ")
+cart = {}
 
-    with open(FILE_NAME, "a") as file:
-        file.write(f"{website},{username},{password}\n")
+def show_products():
+    print("\nAvailable Products")
 
-    print("Password Saved Successfully")
-
-
-def view_passwords():
-    try:
-        with open(FILE_NAME, "r") as file:
-            data = file.readlines()
-
-            if not data:
-                print("No Records Found")
-
-            else:
-                print("\nSaved Credentials")
-
-                for line in data:
-                    website, username, password = line.strip().split(",")
-
-                    print("Website :", website)
-                    print("Username:", username)
-                    print("Password:", password)
-                    print("-" * 30)
-
-    except FileNotFoundError:
-        print("No Records Found")
+    for product, price in products.items():
+        print(product, "-", price)
 
 
-def search_password():
-    website_name = input("Enter Website Name: ")
+def buy_product():
+    product = input("Enter Product Name: ")
 
-    try:
-        with open(FILE_NAME, "r") as file:
+    if product in products:
 
-            found = False
+        quantity = int(input("Enter Quantity: "))
 
-            for line in file:
-                website, username, password = line.strip().split(",")
+        if product in cart:
+            cart[product] += quantity
+        else:
+            cart[product] = quantity
 
-                if website.lower() == website_name.lower():
+        print("Product Added To Cart")
 
-                    print("\nRecord Found")
-                    print("Username:", username)
-                    print("Password:", password)
+    else:
+        print("Product Not Found")
 
-                    found = True
-                    break
 
-            if not found:
-                print("Website Not Found")
+def generate_bill():
 
-    except FileNotFoundError:
-        print("No Records Found")
+    if len(cart) == 0:
+        print("Cart Is Empty")
+        return
+
+    total = 0
+
+    print("\n===== BILL =====")
+
+    for product, quantity in cart.items():
+
+        amount = products[product] * quantity
+
+        print(
+            product,
+            "| Price:", products[product],
+            "| Qty:", quantity,
+            "| Amount:", amount
+        )
+
+        total += amount
+
+    print("\nTotal Bill =", total)
 
 
 while True:
 
-    print("\n===== PASSWORD MANAGER =====")
-    print("1. Add Password")
-    print("2. View Passwords")
-    print("3. Search Password")
+    print("\n===== INVENTORY BILLING SYSTEM =====")
+    print("1. Show Products")
+    print("2. Buy Product")
+    print("3. Generate Bill")
     print("4. Exit")
 
     choice = input("Enter Choice: ")
 
     if choice == "1":
-        add_password()
+        show_products()
 
     elif choice == "2":
-        view_passwords()
+        buy_product()
 
     elif choice == "3":
-        search_password()
+        generate_bill()
 
     elif choice == "4":
         print("Program Closed")

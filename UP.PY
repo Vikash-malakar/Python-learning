@@ -1,85 +1,40 @@
-products = {
-    "Laptop": 50000,
-    "Mouse": 500,
-    "Keyboard": 1500,
-    "Monitor": 12000
+questions = {
+    "Python kis type ki language hai?": "high level",
+    "2 + 2 = ?": "4",
+    "India ki capital kya hai?": "delhi",
+    "HTML ka full form kya hai?": "hyper text markup language",
+    "5 * 6 = ?": "30"
 }
 
-cart = {}
+score = 0
 
-def show_products():
-    print("\nAvailable Products")
+print("===== ONLINE EXAM SYSTEM =====")
 
-    for product, price in products.items():
-        print(product, "-", price)
+for question, answer in questions.items():
 
+    user_answer = input("\n" + question + " ")
 
-def buy_product():
-    product = input("Enter Product Name: ")
-
-    if product in products:
-
-        quantity = int(input("Enter Quantity: "))
-
-        if product in cart:
-            cart[product] += quantity
-        else:
-            cart[product] = quantity
-
-        print("Product Added To Cart")
-
+    if user_answer.lower() == answer.lower():
+        print("Correct Answer")
+        score += 1
     else:
-        print("Product Not Found")
+        print("Wrong Answer")
 
+print("\n===== RESULT =====")
+print("Score:", score, "/", len(questions))
 
-def generate_bill():
+percentage = (score / len(questions)) * 100
 
-    if len(cart) == 0:
-        print("Cart Is Empty")
-        return
+print("Percentage:", percentage, "%")
 
-    total = 0
+if percentage >= 80:
+    print("Grade: A")
 
-    print("\n===== BILL =====")
+elif percentage >= 60:
+    print("Grade: B")
 
-    for product, quantity in cart.items():
+elif percentage >= 40:
+    print("Grade: C")
 
-        amount = products[product] * quantity
-
-        print(
-            product,
-            "| Price:", products[product],
-            "| Qty:", quantity,
-            "| Amount:", amount
-        )
-
-        total += amount
-
-    print("\nTotal Bill =", total)
-
-
-while True:
-
-    print("\n===== INVENTORY BILLING SYSTEM =====")
-    print("1. Show Products")
-    print("2. Buy Product")
-    print("3. Generate Bill")
-    print("4. Exit")
-
-    choice = input("Enter Choice: ")
-
-    if choice == "1":
-        show_products()
-
-    elif choice == "2":
-        buy_product()
-
-    elif choice == "3":
-        generate_bill()
-
-    elif choice == "4":
-        print("Program Closed")
-        break
-
-    else:
-        print("Invalid Choice")
+else:
+    print("Grade: Fail")

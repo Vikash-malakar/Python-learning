@@ -1,40 +1,88 @@
-questions = {
-    "Python kis type ki language hai?": "high level",
-    "2 + 2 = ?": "4",
-    "India ki capital kya hai?": "delhi",
-    "HTML ka full form kya hai?": "hyper text markup language",
-    "5 * 6 = ?": "30"
-}
+available_seats = 20
+bookings = {}
 
-score = 0
+def book_ticket():
+    global available_seats
 
-print("===== ONLINE EXAM SYSTEM =====")
+    if available_seats == 0:
+        print("No Seats Available")
+        return
 
-for question, answer in questions.items():
+    name = input("Enter Passenger Name: ")
+    age = int(input("Enter Age: "))
 
-    user_answer = input("\n" + question + " ")
+    ticket_id = len(bookings) + 1
 
-    if user_answer.lower() == answer.lower():
-        print("Correct Answer")
-        score += 1
+    bookings[ticket_id] = {
+        "name": name,
+        "age": age
+    }
+
+    available_seats -= 1
+
+    print("Ticket Booked Successfully")
+    print("Ticket ID:", ticket_id)
+
+
+def view_bookings():
+    if len(bookings) == 0:
+        print("No Bookings Found")
+        return
+
+    print("\nPassenger List")
+
+    for ticket_id, data in bookings.items():
+        print(
+            "Ticket ID:", ticket_id,
+            "| Name:", data["name"],
+            "| Age:", data["age"]
+        )
+
+
+def cancel_ticket():
+    global available_seats
+
+    ticket_id = int(input("Enter Ticket ID: "))
+
+    if ticket_id in bookings:
+        del bookings[ticket_id]
+        available_seats += 1
+
+        print("Ticket Cancelled Successfully")
     else:
-        print("Wrong Answer")
+        print("Invalid Ticket ID")
 
-print("\n===== RESULT =====")
-print("Score:", score, "/", len(questions))
 
-percentage = (score / len(questions)) * 100
+def check_seats():
+    print("Available Seats:", available_seats)
 
-print("Percentage:", percentage, "%")
 
-if percentage >= 80:
-    print("Grade: A")
+while True:
 
-elif percentage >= 60:
-    print("Grade: B")
+    print("\n===== RAILWAY RESERVATION SYSTEM =====")
+    print("1. Book Ticket")
+    print("2. View Bookings")
+    print("3. Cancel Ticket")
+    print("4. Check Available Seats")
+    print("5. Exit")
 
-elif percentage >= 40:
-    print("Grade: C")
+    choice = input("Enter Choice: ")
 
-else:
-    print("Grade: Fail")
+    if choice == "1":
+        book_ticket()
+
+    elif choice == "2":
+        view_bookings()
+
+    elif choice == "3":
+        cancel_ticket()
+
+    elif choice == "4":
+        check_seats()
+
+    elif choice == "5":
+        print("Program Closed")
+        break
+
+    else:
+        print("Invalid Choice")

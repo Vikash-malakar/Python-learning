@@ -1,86 +1,87 @@
-available_seats = 20
-bookings = {}
+students = {}
 
-def book_ticket():
-    global available_seats
+def add_student():
+    roll_no = input("Enter Roll Number: ")
+    name = input("Enter Name: ")
 
-    if available_seats == 0:
-        print("No Seats Available")
-        return
+    marks1 = float(input("Enter Physics Marks: "))
+    marks2 = float(input("Enter Chemistry Marks: "))
+    marks3 = float(input("Enter Math Marks: "))
 
-    name = input("Enter Passenger Name: ")
-    age = int(input("Enter Age: "))
+    total = marks1 + marks2 + marks3
+    percentage = total / 3
 
-    ticket_id = len(bookings) + 1
+    if percentage >= 90:
+        grade = "A+"
+    elif percentage >= 75:
+        grade = "A"
+    elif percentage >= 60:
+        grade = "B"
+    elif percentage >= 40:
+        grade = "C"
+    else:
+        grade = "Fail"
 
-    bookings[ticket_id] = {
+    students[roll_no] = {
         "name": name,
-        "age": age
+        "percentage": percentage,
+        "grade": grade
     }
 
-    available_seats -= 1
-
-    print("Ticket Booked Successfully")
-    print("Ticket ID:", ticket_id)
+    print("Student Added Successfully")
 
 
-def view_bookings():
-    if len(bookings) == 0:
-        print("No Bookings Found")
+def view_students():
+    if len(students) == 0:
+        print("No Students Found")
         return
 
-    print("\nPassenger List")
+    print("\nStudent Records")
 
-    for ticket_id, data in bookings.items():
+    for roll_no, data in students.items():
         print(
-            "Ticket ID:", ticket_id,
+            "Roll No:", roll_no,
             "| Name:", data["name"],
-            "| Age:", data["age"]
+            "| Percentage:", round(data["percentage"], 2),
+            "| Grade:", data["grade"]
         )
 
 
-def cancel_ticket():
-    global available_seats
+def find_topper():
+    if len(students) == 0:
+        print("No Students Found")
+        return
 
-    ticket_id = int(input("Enter Ticket ID: "))
+    topper = max(
+        students,
+        key=lambda x: students[x]["percentage"]
+    )
 
-    if ticket_id in bookings:
-        del bookings[ticket_id]
-        available_seats += 1
-
-        print("Ticket Cancelled Successfully")
-    else:
-        print("Invalid Ticket ID")
-
-
-def check_seats():
-    print("Available Seats:", available_seats)
+    print("\nTopper Details")
+    print("Name:", students[topper]["name"])
+    print("Percentage:", round(students[topper]["percentage"], 2))
 
 
 while True:
 
-    print("\n===== RAILWAY RESERVATION SYSTEM =====")
-    print("1. Book Ticket")
-    print("2. View Bookings")
-    print("3. Cancel Ticket")
-    print("4. Check Available Seats")
-    print("5. Exit")
+    print("\n===== STUDENT RESULT MANAGER =====")
+    print("1. Add Student")
+    print("2. View Students")
+    print("3. Find Topper")
+    print("4. Exit")
 
     choice = input("Enter Choice: ")
 
     if choice == "1":
-        book_ticket()
+        add_student()
 
     elif choice == "2":
-        view_bookings()
+        view_students()
 
     elif choice == "3":
-        cancel_ticket()
+        find_topper()
 
     elif choice == "4":
-        check_seats()
-
-    elif choice == "5":
         print("Program Closed")
         break
 

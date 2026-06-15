@@ -1,85 +1,81 @@
-students = {}
+rooms = {
+    101: None,
+    102: None,
+    103: None,
+    104: None,
+    105: None
+}
 
-def add_student():
-    roll_no = input("Enter Roll Number: ")
-    name = input("Enter Name: ")
+ROOM_PRICE = 1500
 
-    marks1 = float(input("Enter Physics Marks: "))
-    marks2 = float(input("Enter Chemistry Marks: "))
-    marks3 = float(input("Enter Math Marks: "))
+def show_rooms():
+    print("\nRoom Status")
 
-    total = marks1 + marks2 + marks3
-    percentage = total / 3
+    for room, guest in rooms.items():
+        if guest is None:
+            print("Room", room, "- Available")
+        else:
+            print("Room", room, "- Booked by", guest)
 
-    if percentage >= 90:
-        grade = "A+"
-    elif percentage >= 75:
-        grade = "A"
-    elif percentage >= 60:
-        grade = "B"
-    elif percentage >= 40:
-        grade = "C"
+
+def book_room():
+    room_no = int(input("Enter Room Number: "))
+
+    if room_no not in rooms:
+        print("Invalid Room Number")
+
+    elif rooms[room_no] is None:
+        name = input("Enter Guest Name: ")
+
+        rooms[room_no] = name
+
+        print("Room Booked Successfully")
+
     else:
-        grade = "Fail"
-
-    students[roll_no] = {
-        "name": name,
-        "percentage": percentage,
-        "grade": grade
-    }
-
-    print("Student Added Successfully")
+        print("Room Already Booked")
 
 
-def view_students():
-    if len(students) == 0:
-        print("No Students Found")
-        return
+def checkout():
+    room_no = int(input("Enter Room Number: "))
 
-    print("\nStudent Records")
+    if room_no not in rooms:
+        print("Invalid Room Number")
 
-    for roll_no, data in students.items():
-        print(
-            "Roll No:", roll_no,
-            "| Name:", data["name"],
-            "| Percentage:", round(data["percentage"], 2),
-            "| Grade:", data["grade"]
-        )
+    elif rooms[room_no] is not None:
+        days = int(input("Enter Number of Days: "))
 
+        total_bill = days * ROOM_PRICE
 
-def find_topper():
-    if len(students) == 0:
-        print("No Students Found")
-        return
+        print("\nGuest Name:", rooms[room_no])
+        print("Room Number:", room_no)
+        print("Total Bill:", total_bill)
 
-    topper = max(
-        students,
-        key=lambda x: students[x]["percentage"]
-    )
+        rooms[room_no] = None
 
-    print("\nTopper Details")
-    print("Name:", students[topper]["name"])
-    print("Percentage:", round(students[topper]["percentage"], 2))
+        print("Check-Out Successful")
+
+    else:
+        print("Room Is Already Available")
 
 
 while True:
 
-    print("\n===== STUDENT RESULT MANAGER =====")
-    print("1. Add Student")
-    print("2. View Students")
-    print("3. Find Topper")
+    print("\n===== HOTEL MANAGEMENT SYSTEM =====")
+    print("1. Show Rooms")
+    print("2. Book Room")
+    print("3. Check Out")
     print("4. Exit")
 
     choice = input("Enter Choice: ")
 
     if choice == "1":
-        add_student()
+        show_rooms()
 
     elif choice == "2":
-        view_students()
+        book_room()
 
     elif choice == "3":
-        find_topper()
+        checkout()
 
     elif choice == "4":
         print("Program Closed")

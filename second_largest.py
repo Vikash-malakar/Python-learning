@@ -1,7 +1,14 @@
-numbers = list(map(int, input("Enter numbers: ").split()))
+num = int(input("Enter a number: "))
 
-numbers = list(set(numbers))
+temp = num
+total = 0
 
-numbers.sort()
+while temp > 0:
+    digit = temp % 10
+    total += digit ** 3
+    temp //= 10
 
-print("Second Largest Number:", numbers[-2])
+if total == num:
+    print("Armstrong Number")
+else:
+    print("Not an Armstrong Number")

@@ -1,13 +1,6 @@
-number = int(input("Enter a decimal number: "))
+year = int(input("Enter a year: "))
 
-binary = ""
-
-if number == 0:
-    binary = "0"
-
-while number > 0:
-    remainder = number % 2
-    binary = str(remainder) + binary
-    number //= 2
-
-print("Binary Number:", binary)
+if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+    print(year, "is a Leap Year")
+else:
+    print(year, "is not a Leap Year")

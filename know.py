@@ -1,11 +1,15 @@
-sentence = input("Enter a sentence: ")
+sentence = input("Enter a sentence: ").lower()
 
-words = sentence.split()
+alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-reversed_words = words[::-1]
+is_pangram = True
 
-result = " ".join(reversed_words)
+for letter in alphabet:
+    if letter not in sentence:
+        is_pangram = False
+        break
 
-print("Reversed Sentence:", result)
-print("-------------logout---------------")
-print("------------logout--------------")
+if is_pangram:
+    print("It is a Pangram")
+else:
+    print("It is not a Pangram")
